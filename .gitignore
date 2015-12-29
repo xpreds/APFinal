@@ -49,3 +49,6 @@ Temporary Items
 
 # Class files of compiled Java source files
 *.class
+
+# Files that DrJava is working on
+*.java~
