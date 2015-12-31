@@ -1,5 +1,11 @@
 public class TexasHoldem {
-  
+  Deck deck = new Deck();
+  Hand table = new Hand();
+  int raisecounter = 0;
+  ArrayList<Player> playersinit = new ArrayList<Player>();
+  double small;
+  double big;
+  Evaluator evaluator = new Evaluator();
   public static void main(String[] args) {
     
   }
