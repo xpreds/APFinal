@@ -54,9 +54,11 @@ public class TexasHoldem {
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // After this for loop every player had a chance to act
@@ -97,9 +99,11 @@ public class TexasHoldem {
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0 ) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // At this point every player had a chance to act
@@ -138,9 +142,11 @@ public class TexasHoldem {
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // At this point every player had a chance to act
@@ -179,9 +185,11 @@ public class TexasHoldem {
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // At this point every player had a chance to act
