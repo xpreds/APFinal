@@ -48,7 +48,7 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Current bet: " + )
+          System.out.println("Current bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
@@ -93,7 +93,7 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
@@ -136,7 +136,7 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
@@ -179,7 +179,7 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
