@@ -1,9 +1,12 @@
+import java.util.Scanner;
+
 public class TexasHoldem {
   public static void main(String[] args) {
     
   }
   
   public void Poker() {
+    Scanner scan = new Scanner(System.in);
     Deck deck = new Deck();
     Hand table = new Hand();
     Scanner scan = new Scanner(System.in);
@@ -45,7 +48,7 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Current bet: " + )
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
