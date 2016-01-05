@@ -1,6 +1,3 @@
-public class Deck {
-  public Deck() {}
-}
 //Ali Kaan Durany?ld?z
 import java.util.ArrayList;
 import java.util.Random;
