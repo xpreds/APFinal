@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
 
 
 public class TexasHoldem {
@@ -36,6 +38,13 @@ public class TexasHoldem {
     boolean everyoneact;
     boolean everyonesame;
     
+    // Create the frame
+    
+    
+    
+    
+    
+    
     // The Preflop
     System.out.println("Welcome to the Preflop round!");
     everyoneact = false;    // Set the round passing conditions to false
@@ -51,12 +60,10 @@ public class TexasHoldem {
     playerlist.get(1).setValue(big);
     playerlist.get(2).setValue(big);
     
-    while(!(everyoneact && everyonesame)) {
+    /*while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(!(playerlist.get(i).getName().equals(""))) {
+        if(!(playerlist.get(i).getName().equals("AI"))) {
           System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
-          System.out.println("Current bet: " + bet);
-          System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
         } else {
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -65,7 +72,8 @@ public class TexasHoldem {
           playerlist.get(i).setValue(0);
         }
         if(playerlist.get(i).getValue() > bet) {
-          raisecounter++;
+          bet = playerlist.get(i).getValue();
+          raisecounter--;
         }
       }
       everyoneact = true;    // After this for loop every player had a chance to act
@@ -76,12 +84,14 @@ public class TexasHoldem {
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
+          System.out.println("Everyone same changing round");
         } else {
           everyonesame = false;
+          System.out.println("Not same");
           break;
         }
       }
-    }
+    }*/
     
     
     // The Flop
@@ -101,14 +111,12 @@ public class TexasHoldem {
     table.add(deck.getCard());
     table.add(deck.getCard());
     
-    
+    painter(table, human);
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(!(playerlist.get(i).getName().equals(""))) {
+        if(!(playerlist.get(i).getName().equals("AI"))) {
           System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
           System.out.println("Cards on the table: " + deck.getName(table.get(0)) + deck.getName(table.get(1)) + deck.getName(table.get(2)));
-          System.out.println("Curent bet: " + bet);
-          System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
         } else {
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -129,8 +137,10 @@ public class TexasHoldem {
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
+          System.out.println("Everyone same changing round");
         } else {
           everyonesame = false;
+          System.out.println("Not same");
           break;
         }
       }
@@ -153,10 +163,8 @@ public class TexasHoldem {
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(!(playerlist.get(i).getName().equals(""))) {
+        if(!(playerlist.get(i).getName().equals("AI"))) {
           System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
-          System.out.println("Curent bet: " + bet);
-          System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
         } else {
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -165,7 +173,8 @@ public class TexasHoldem {
           playerlist.get(i).setValue(0);
         }
         if(playerlist.get(i).getValue() > bet) {
-          raisecounter++;
+          bet = playerlist.get(i).getValue();
+          raisecounter--;
         }
       }
       everyoneact = true;    // At this point every player had a chance to act
@@ -176,8 +185,10 @@ public class TexasHoldem {
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
+          System.out.println("Everyone same changing round");
         } else {
           everyonesame = false;
+          System.out.println("Not same");
           break;
         }
       }
@@ -200,19 +211,19 @@ public class TexasHoldem {
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(!(playerlist.get(i).getName().equals(""))) {
+        if(!(playerlist.get(i).getName().equals("AI"))) {
           System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
-          System.out.println("Curent bet: " + bet);
-          System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
         } else {
+          System.out.println("AI playing");
           playerlist.get(i).selectAction(raisecounter, bet);
         }
         if(playerlist.get(i).getValue() < 0) {
           playerlist.get(i).setValue(0);
         }
         if(playerlist.get(i).getValue() > bet) {
-          raisecounter++;
+          bet = playerlist.get(i).getValue();
+          raisecounter--;
         }
       }
       everyoneact = true;    // At this point every player had a chance to act
@@ -223,8 +234,10 @@ public class TexasHoldem {
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
+          System.out.println("Everyone same changing round");
         } else {
           everyonesame = false;
+          System.out.println("Everyone not same!");
           break;
         }
       }
@@ -235,6 +248,22 @@ public class TexasHoldem {
     
     
    
+  }
+  
+  public static void painter(ArrayList<Integer> t, Player h) {
+    JFrame frame = new JFrame("Poker Tester");
+    frame.setSize(600, 400);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setLocationRelativeTo(null);
+    frame.setResizable(false);
+    
+    TableComponent table = new TableComponent(t);
+    TableComponent human = new TableComponent(h);
+    
+    frame.getContentPane().add(table, BorderLayout.CENTER);
+    frame.getContentPane().add(human, BorderLayout.LINE_END);
+    frame.setVisible(true);
+    
   }
   
   

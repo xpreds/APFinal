@@ -35,6 +35,7 @@ public class Player extends JPanel{
     eval = e;
     rand = r;
     table = t;
+    name = "AI";
     isAI = true;
   }
   
@@ -88,10 +89,13 @@ public class Player extends JPanel{
           int n = rand.nextInt(31);
           if(n <= 10) {
             fold();
+            System.out.println("AI folded");
           } else if(n <= 20) {
             call();
+            System.out.println("AI called");
           } else {
             raise();
+            System.out.println("AI raised");
           }
         }
       }
@@ -134,11 +138,15 @@ public class Player extends JPanel{
     round = r;
   }
   
-  public void fold() {}
+  public void fold() {
+    value = bet;
+  }
   public void call() {
+    money = money - (bet - value);
     value = bet;
   }
   public void raise() {
-    value = bet + bet;
+    money = money - (bet + bet - value);
+    value = bet;
   }
 }
