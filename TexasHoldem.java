@@ -8,7 +8,7 @@ public class TexasHoldem {
   public void Poker() {
     Scanner scan = new Scanner(System.in);
     Deck deck = new Deck();
-    Hand table = new Hand();
+    Hand table = new Hand();  // Create the table as a hand or Player object, so that it holds cards and you can add cards to it.
     Scanner scan = new Scanner(System.in);
     Random generator = new Random();
     
