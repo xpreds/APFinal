@@ -2,13 +2,18 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Player extends JPanel{
   double money;
   double value = 0;
+  double bet;
   Evaluator eval = null;
   Random rand = null;
+  Scanner scan = new Scanner(System.in);
   String name = "";
   String round = "";
   boolean isAI;
@@ -26,7 +31,7 @@ public class Player extends JPanel{
   }
   
   // Constructor for AI players
-  public void Player(Evaluator e, ArrayList<Integer> t) {
+  public Player(Evaluator e, ArrayList<Integer> t, Random r) {
     eval = e;
     rand = r;
     table = t;
@@ -41,6 +46,16 @@ public class Player extends JPanel{
     money = money + m;
   }
   
+  public double getBalance() {
+    return money;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  
+  public void setBlind(double b) {}
+  
   // Used for resetting the value of the player at the beginng of each round
   public void setValue(double v) {
     value = v;
@@ -50,8 +65,8 @@ public class Player extends JPanel{
     return value;
   }
   
-  public void selectAction(int raiselimit, double bet) {
-    bet = bet;
+  public void selectAction(int raiselimit, double b) {
+    bet = b;
     if(isAI) {
       // If has anything matching call or raise
       if(eval.evaluate(hand) > 0) {
@@ -70,10 +85,13 @@ public class Player extends JPanel{
           }
         } else {
           // 1/3 Chance to fold
-          switch(rand.nextInt(31)) {
-            case <= 10: fold(); break;
-            case <= 20: call(); break;
-            case <= 30: raise(); break;
+          int n = rand.nextInt(31);
+          if(n <= 10) {
+            fold();
+          } else if(n <= 20) {
+            call();
+          } else {
+            raise();
           }
         }
       }
@@ -117,6 +135,10 @@ public class Player extends JPanel{
   }
   
   public void fold() {}
-  public void call() {}
-  public void raise() {}
+  public void call() {
+    value = bet;
+  }
+  public void raise() {
+    value = bet + bet;
+  }
 }

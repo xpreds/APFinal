@@ -1,29 +1,33 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 
 public class TexasHoldem {
   public static void main(String[] args) {
-    
+    Poker();
   }
   
-  public void Poker() {
+  public static void Poker() {
     Scanner scan = new Scanner(System.in);
     Deck deck = new Deck();
-    Hand table = new Hand();  // Create the table as a hand or Player object, so that it holds cards and you can add cards to it.
-    Scanner scan = new Scanner(System.in);
+    Evaluator evaluator = new Evaluator();
+    ArrayList<Integer> table = new ArrayList<Integer>();  // Create the table as a hand or Player object, so that it holds cards and you can add cards to it.
     Random generator = new Random();
     
     System.out.print("How many rivals? ");
     int playercount = scan.nextInt();
     ArrayList<Player> playerlist = new ArrayList<Player>(playercount);
     for(int i = 0; i < playercount; i++) {
-      playerlist.add(new Player(table));
+      playerlist.add(new Player(evaluator, table, generator));
     }
     
-    Player human = new Player();
+    Player human = new Player(JOptionPane.showInputDialog("What is your name? "), 1000, evaluator, generator, table);
     System.out.println("How much money do you have? ");
     human.addMoney(scan.nextDouble());
-    playerlist.add(generator.nextInt(0, playercount), human);
-    playerlist.add(new Player(table));
+    playerlist.add(generator.nextInt(playercount), human);
+    playerlist.add(new Player(evaluator, table, generator));
     double big = human.getBalance()/100;
     for(int i = 0; i < playercount; i++) {
       playerlist.get(i).setBlind(big);
@@ -33,22 +37,24 @@ public class TexasHoldem {
     boolean everyonesame;
     
     // The Preflop
+    System.out.println("Welcome to the Preflop round!");
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
     
-    int raisecounter = 0;    // Set counter for raise to zero
+    int raisecounter = 3;    // Set counter for raise to zero
     double bet = big;    // Set bet value to the highest amount
     for(int i = 0; i < playercount; i++) {
-      playerlist.get(i).giveCard(deck.getCard());
-      playerlist.get(i).giveCard(deck.getCard());
+      playerlist.get(i).takeCard(deck.getCard());
+      playerlist.get(i).takeCard(deck.getCard());
       playerlist.get(i).setValue(0);
     }
-    playerlist.get(1).setValue(small);
+    playerlist.get(1).setValue(big);
     playerlist.get(2).setValue(big);
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlist.get(i) = human) {
+        if(!(playerlist.get(i).getName().equals(""))) {
+          System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
           System.out.println("Current bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -62,7 +68,7 @@ public class TexasHoldem {
           raisecounter++;
         }
       }
-      everyoneacted = true;    // After this for loop every player had a chance to act
+      everyoneact = true;    // After this for loop every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
         if(pre < 0) {
@@ -79,24 +85,28 @@ public class TexasHoldem {
     
     
     // The Flop
+    System.out.println("Welcome to the Flop round!");
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
     
-    raisecounter = 0;    // Set counter for raise to zero
+    raisecounter = 3;    // Set counter for raise to zero
     bet = big;    // Set bet value to the highest amount
     for(int i = 0; i < playercount; i++) {
       playerlist.get(i).setValue(0);
     }
-    playerlist.get(1).stValue(small);
+    playerlist.get(1).setValue(big);
     playerlist.get(2).setValue(big);
     
-    table.giveCard(deck.getCard()); // Add three cards to the table
-    table.giveCard(deck.getCard());
-    table.giveCard(deck.getCard());
+    table.add(deck.getCard()); // Add three cards to the table
+    table.add(deck.getCard());
+    table.add(deck.getCard());
+    
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlist.get(i) = human) {
+        if(!(playerlist.get(i).getName().equals(""))) {
+          System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
+          System.out.println("Cards on the table: " + deck.getName(table.get(0)) + deck.getName(table.get(1)) + deck.getName(table.get(2)));
           System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -108,10 +118,10 @@ public class TexasHoldem {
         }
         if(playerlist.get(i).getValue() > bet) {
           bet = playerlist.get(i).getValue();
-          raisecounter++;
+          raisecounter--;
         }
       }
-      everyoneacted = true;    // At this point every player had a chance to act
+      everyoneact = true;    // At this point every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
         if(pre < 0) {
@@ -128,21 +138,23 @@ public class TexasHoldem {
     
     
     // The Turn
+    System.out.println("Welcome to the Turn round!");
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
-    raisecounter = 0;    // Set counter for raise to zero
+    raisecounter = 3;    // Set counter for raise to zero
     bet = big;    // Set bet value to the highest amount
     for(int i = 0; i < playercount; i++) {
       playerlist.get(i).setValue(0);
     }
-    playerlist.get(1).stValue(small);
+    playerlist.get(1).setValue(big);
     playerlist.get(2).setValue(big);
     
-    table.giveCard(deck.getCard());  // Add one card to the table
+    table.add(deck.getCard());  // Add one card to the table
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlist.get(i) = human) {
+        if(!(playerlist.get(i).getName().equals(""))) {
+          System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
           System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -156,7 +168,7 @@ public class TexasHoldem {
           raisecounter++;
         }
       }
-      everyoneacted = true;    // At this point every player had a chance to act
+      everyoneact = true;    // At this point every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
         if(pre < 0) {
@@ -173,21 +185,23 @@ public class TexasHoldem {
     
     
     // The River
+    System.out.println("Welcome to the river round");
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
-    raisecounter = 0;    // Set counter for raise to zero
+    raisecounter = 3;    // Set counter for raise to zero
     bet = big;    // Set bet value to the highest amount
     for(int i = 0; i < playercount; i++) {
       playerlist.get(i).setValue(0);
     }
-    playerlist.get(1).stValue(small);
+    playerlist.get(1).setValue(big);
     playerlist.get(2).setValue(big);
     
-    table.giveCard(deck.getCard());  // Add one card to the table
+    table.add(deck.getCard());  // Add one card to the table
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlist.get(i) = human) {
+        if(!(playerlist.get(i).getName().equals(""))) {
+          System.out.println("Your cards: " + deck.getName(playerlist.get(i).getCard(0)) + "\t" + deck.getName(playerlist.get(i).getCard(1)));
           System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(raisecounter, bet);
@@ -201,7 +215,7 @@ public class TexasHoldem {
           raisecounter++;
         }
       }
-      everyoneacted = true;    // At this point every player had a chance to act
+      everyoneact = true;    // At this point every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
         if(pre < 0) {
