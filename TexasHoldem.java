@@ -79,8 +79,8 @@ public class TexasHoldem {
       everyoneact = true;    // After this for loop every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
-        if(pre < 0) {
-          pre = playercount;
+        if(i == playercount) {
+          i = 0;
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
@@ -111,7 +111,7 @@ public class TexasHoldem {
     table.add(deck.getCard());
     table.add(deck.getCard());
     
-    painter(table, human);
+    
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(!(playerlist.get(i).getName().equals("AI"))) {
@@ -132,8 +132,8 @@ public class TexasHoldem {
       everyoneact = true;    // At this point every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
-        if(pre < 0) {
-          pre = playercount;
+        if(i == playercount) {
+          i = 0;
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
@@ -180,8 +180,8 @@ public class TexasHoldem {
       everyoneact = true;    // At this point every player had a chance to act
       for(int i = 0; i < playercount; i++) {
         int pre = i-1;
-        if(pre < 0) {
-          pre = playercount;
+        if(i == playercount) {
+          i = 0;
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
@@ -209,6 +209,19 @@ public class TexasHoldem {
     
     table.add(deck.getCard());  // Add one card to the table
     
+    
+    
+    
+    // The Showdown
+    
+    
+   
+  }
+  
+  public void preFlop() {}
+  public void flop() {}
+  public void turn() {}
+  public void river() {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(!(playerlist.get(i).getName().equals("AI"))) {
@@ -227,10 +240,10 @@ public class TexasHoldem {
         }
       }
       everyoneact = true;    // At this point every player had a chance to act
-      for(int i = 0; i < playercount; i++) {
+      for(int i = 1; i <= playercount; i++) {
         int pre = i-1;
-        if(pre < 0) {
-          pre = playercount;
+        if(i == playercount) {
+          i = 0;
         }
         if(playerlist.get(i).getValue() == playerlist.get(pre).getValue()) {
           everyonesame = true;
@@ -242,12 +255,6 @@ public class TexasHoldem {
         }
       }
     }
-    
-    
-    // The Showdown
-    
-    
-   
   }
   
   public static void painter(ArrayList<Integer> t, Player h) {
@@ -260,8 +267,8 @@ public class TexasHoldem {
     TableComponent table = new TableComponent(t);
     TableComponent human = new TableComponent(h);
     
-    frame.getContentPane().add(table, BorderLayout.CENTER);
-    frame.getContentPane().add(human, BorderLayout.LINE_END);
+    frame.getContentPane().add(table);
+    frame.getContentPane().add(human, BorderLayout.SOUTH);
     frame.setVisible(true);
     
   }
