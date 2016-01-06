@@ -35,6 +35,7 @@ public class TexasHoldem {
     // The Preflop
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
+    
     int raisecounter = 0;    // Set counter for raise to zero
     double bet = big;    // Set bet value to the highest amount
     for(int i = 0; i < playercount; i++) {
@@ -47,12 +48,12 @@ public class TexasHoldem {
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlit.get(i) = human) {
+        if(playerlist.get(i) = human) {
           System.out.println("Current bet: " + bet);
           System.out.println("Call, raise or fold? ");
-          playerlist.get(i).selectAction(scan.nextLine());
+          playerlist.get(i).selectAction(raisecounter, bet);
         } else {
-          playerlist.get(i).selectAction();
+          playerlist.get(i).selectAction(raisecounter, bet);
         }
         if(playerlist.get(i).getValue() < 0) {
           playerlist.get(i).setValue(0);
@@ -75,9 +76,12 @@ public class TexasHoldem {
         }
       }
     }
+    
+    
     // The Flop
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
+    
     raisecounter = 0;    // Set counter for raise to zero
     bet = big;    // Set bet value to the highest amount
     for(int i = 0; i < playercount; i++) {
@@ -86,23 +90,24 @@ public class TexasHoldem {
     playerlist.get(1).stValue(small);
     playerlist.get(2).setValue(big);
     
-    table.giveCard(deck.getCard());
+    table.giveCard(deck.getCard()); // Add three cards to the table
     table.giveCard(deck.getCard());
     table.giveCard(deck.getCard());
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlit.get(i) = human) {
+        if(playerlist.get(i) = human) {
           System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
-          playerlist.get(i).selectAction(scan.nextLine());
+          playerlist.get(i).selectAction(raisecounter, bet);
         } else {
-          playerlist.get(i).selectAction();
+          playerlist.get(i).selectAction(raisecounter, bet);
         }
         if(playerlist.get(i).getValue() < 0 ) {
           playerlist.get(i).setValue(0);
         }
         if(playerlist.get(i).getValue() > bet) {
+          bet = playerlist.get(i).getValue();
           raisecounter++;
         }
       }
@@ -120,6 +125,8 @@ public class TexasHoldem {
         }
       }
     }
+    
+    
     // The Turn
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
@@ -131,16 +138,16 @@ public class TexasHoldem {
     playerlist.get(1).stValue(small);
     playerlist.get(2).setValue(big);
     
-    table.giveCard(deck.getCard());
+    table.giveCard(deck.getCard());  // Add one card to the table
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlit.get(i) = human) {
+        if(playerlist.get(i) = human) {
           System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
-          playerlist.get(i).selectAction(scan.nextLine());
+          playerlist.get(i).selectAction(raisecounter, bet);
         } else {
-          playerlist.get(i).selectAction();
+          playerlist.get(i).selectAction(raisecounter, bet);
         }
         if(playerlist.get(i).getValue() < 0) {
           playerlist.get(i).setValue(0);
@@ -163,6 +170,8 @@ public class TexasHoldem {
         }
       }
     }
+    
+    
     // The River
     everyoneact = false;    // Set the round passing conditions to false
     everyonesame = false;    // Set the round passing conditions to false
@@ -174,16 +183,16 @@ public class TexasHoldem {
     playerlist.get(1).stValue(small);
     playerlist.get(2).setValue(big);
     
-    table.giveCard(deck.getCard());
+    table.giveCard(deck.getCard());  // Add one card to the table
     
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
-        if(playerlit.get(i) = human) {
+        if(playerlist.get(i) = human) {
           System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
-          playerlist.get(i).selectAction(scan.nextLine());
+          playerlist.get(i).selectAction(raisecounter, bet);
         } else {
-          playerlist.get(i).selectAction();
+          playerlist.get(i).selectAction(raisecounter, bet);
         }
         if(playerlist.get(i).getValue() < 0) {
           playerlist.get(i).setValue(0);
@@ -206,6 +215,8 @@ public class TexasHoldem {
         }
       }
     }
+    
+    
     // The Showdown
     
     
