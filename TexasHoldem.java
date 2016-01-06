@@ -1,11 +1,14 @@
+import java.util.Scanner;
+
 public class TexasHoldem {
   public static void main(String[] args) {
     
   }
   
   public void Poker() {
+    Scanner scan = new Scanner(System.in);
     Deck deck = new Deck();
-    Hand table = new Hand();
+    Hand table = new Hand();  // Create the table as a hand or Player object, so that it holds cards and you can add cards to it.
     Scanner scan = new Scanner(System.in);
     Random generator = new Random();
     
@@ -45,15 +48,17 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Current bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // After this for loop every player had a chance to act
@@ -88,15 +93,17 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0 ) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // At this point every player had a chance to act
@@ -129,15 +136,17 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // At this point every player had a chance to act
@@ -170,15 +179,17 @@ public class TexasHoldem {
     while(!(everyoneact && everyonesame)) {
       for(int i  = 0; i < playercount; i++) {
         if(playerlit.get(i) = human) {
-          System.out.println("Curent bet: " + )
+          System.out.println("Curent bet: " + bet);
           System.out.println("Call, raise or fold? ");
           playerlist.get(i).selectAction(scan.nextLine());
         } else {
           playerlist.get(i).selectAction();
         }
-        switch(playerlist.get(i).getValue()) {
-          case < 0: playerlist.get(i).setValue(0);
-          case > bet: raisecounter++;
+        if(playerlist.get(i).getValue() < 0) {
+          playerlist.get(i).setValue(0);
+        }
+        if(playerlist.get(i).getValue() > bet) {
+          raisecounter++;
         }
       }
       everyoneacted = true;    // At this point every player had a chance to act
