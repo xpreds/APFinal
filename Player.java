@@ -1,10 +1,6 @@
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
 
 
 public class Player extends JPanel{
@@ -38,10 +34,6 @@ public class Player extends JPanel{
     name = "AI";
     isAI = true;
   }
-  
-  /*public void paintComponent(Graphics g) {
-    
-  }*/
   
   public void addMoney(double m) {
     money = money + m;
@@ -119,6 +111,33 @@ public class Player extends JPanel{
       } else {
         fold();
       }
+      
+      
+      JButton call = new JButton("Call or Check");
+      JButton raise = new JButton("Raise");
+      JButton fold = new JButtno("Fold");
+      call.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          call();
+        } } );
+      raise.addActionListener(new ActionListener() { 
+        public void actionPerformed(ActionEvent e) {
+          raise();
+        } } );
+      fold.addActionListener(new ActionListener() { 
+        public void actionPerformed(ActionEvent e) {
+          fold();
+        } } );
+      add(call);
+      add(raise);
+      add(fold);
+        }
+            
+          }
+        }
+      }
+      
+      
     }
   }
   
@@ -140,13 +159,17 @@ public class Player extends JPanel{
   
   public void fold() {
     value = bet;
+    System.out.println("Your value: " + value + "The bet: " + bet);
   }
   public void call() {
-    money = money - (bet - value);
+    //money = money - (bet - value);
     value = bet;
+    System.out.println("Your value: " + value + "The bet: " + bet);
   }
   public void raise() {
-    money = money - (bet + bet - value);
+    //money = money - (bet + bet - value);
+    System.out.print("You raised");
     value = bet;
+    System.out.println("Your value: " + value + "The bet: " + bet);
   }
 }
