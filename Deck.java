@@ -7,6 +7,7 @@ public class Deck {
  
  int[] deck = new int[53];
  String[] cards = new String[53];
+ int counter = 0;
  
  public Deck() {
   deckSetup();
@@ -22,9 +23,7 @@ public class Deck {
   
   for(int i = 1; i <= 52; i++) {
    int value = generator.nextInt(selected.size());
-   
    deck[i] = (selected.get(value)).intValue();
-   
    selected.remove(value);
   }
  }
@@ -74,6 +73,11 @@ public class Deck {
   cards[50] = "Jack of Diamonds";
   cards[51] = "Queen of Diamonds";
   cards[52] = "King of Diamonds";
+ }
+ 
+ public int getCard() {
+   counter++;
+   return deck[counter];
  }
 
 }
